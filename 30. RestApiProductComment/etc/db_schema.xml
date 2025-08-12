@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="smg_product_comment" resource="default" engine="innodb" comment="SMG Product Comment Table">
+        <column xsi:type="int" name="comment_id" unsigned="false" nullable="false" identity="true" comment="Comment ID"/>
+        <column xsi:type="varchar" name="product_id" nullable="false" length="50" comment="Product ID"/>
+        <column xsi:type="varchar" name="customer_id" nullable="false" length="150" comment="Customer ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="text" name="comment" nullable="false" comment="Commets"/>
+        <column xsi:type="smallint" name="status" nullable="false" comment="Commets Status"/>
+        <column xsi:type="timestamp" name="creation_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Comment Creation Time"/>
+        <column xsi:type="timestamp" name="update_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Comment Modification Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="comment_id"/>
+        </constraint>
+        <index referenceId="SMG_PROUCT_COMMENT_TITLE_CONTENT" indexType="fulltext">
+            <column name="title"/>
+            <column name="comment"/>
+        </index>
+        <index referenceId="SMG_PROUCT_COMMENT_PRODUCT_CUSTOMER_IDS" indexType="btree">
+            <column name="product_id"/>
+            <column name="customer_id"/>
+        </index>
+    </table>
+</schema>
+
+

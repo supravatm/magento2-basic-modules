@@ -1,0 +1,25 @@
+PROPERY_MAPPER                     ,DATABASE_SCHEMA              ,COLUMN_DEFAULT ,COLUMN_COMMENT                                      
+input_renderer       ,frontend_input_renderer       ,NULL           ,Frontend Input Renderer           
+global                     ,is_global                     ,1,Is Global                         
+visible                    ,is_visible                    ,1,Is Visible                        
+searchable                 ,is_searchable                 ,0,Is Searchable                     
+filterable                 ,is_filterable                 ,0,Is Filterable                     
+comparable                 ,is_comparable                 ,0,Is Comparable                     
+visible_on_front           ,is_visible_on_front           ,0,Is Visible On Front               
+is_html_allowed_on_front      ,is_html_allowed_on_front      ,0,Is HTML Allowed On Front          
+is_used_for_price_rules       ,is_used_for_price_rules       ,0,Is Used For Price Rules           
+is_filterable_in_search       ,is_filterable_in_search       ,0,Is Filterable In Search           
+used_in_product_listing       ,used_in_product_listing       ,0,Is Used In Product Listing        
+used_for_sort_by              ,used_for_sort_by              ,0,Is Used For Sorting               
+apply_to                      ,apply_to                      ,NULL           ,Apply To                          
+        visible_in_advanced_search      ,    is_visible_in_advanced_search       ,0,Is Visible In Advanced Search     
+position                      ,position                      ,0,Position                          
+wysiwyg_enabled            ,is_wysiwyg_enabled            ,0,Is WYSIWYG Enabled                
+used_for_promo_rules       ,is_used_for_promo_rules       ,0,Is Used For Promo Rules           
+is_required_in_admin_store    ,is_required_in_admin_store    ,0,Is Required In Admin Store        
+is_used_in_grid               ,is_used_in_grid               ,0,Is Used in Grid                   
+is_visible_in_grid            ,is_visible_in_grid            ,0,Is Visible in Grid                
+is_filterable_in_grid         ,is_filterable_in_grid         ,0,Is Filterable in Grid             
+search_weight                 ,search_weight                 ,1,Search Weight                     
+is_pagebuilder_enabled        ,is_pagebuilder_enabled        ,0,Is PageBuilder Enabled            
+additional_data               ,additional_data               ,NULL           ,Additional swatch attributes data

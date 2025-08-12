@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 namespace SMG\CustomAddProductAttribute\Setup;
 
 use Magento\Framework\Setup\UpgradeDataInterface;
@@ -8,33 +9,31 @@ use Magento\Eav\Setup\EavSetupFactory;
 
 class UpgradeData implements UpgradeDataInterface
 {
-	private $eavSetupFactory;
+    private $eavSetupFactory;
 
-	public function __construct(EavSetupFactory $eavSetupFactory)
-	{
-		$this->eavSetupFactory = $eavSetupFactory;
-	}
-
-    public function upgrade(ModuleDataSetupInterface $setup,ModuleContextInterface $context)
+    public function __construct(EavSetupFactory $eavSetupFactory)
     {
-        if (version_compare($context->getVersion(), "1.0.1", "<"))
-        {
+        $this->eavSetupFactory = $eavSetupFactory;
+    }
+
+    public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
+    {
+        if (version_compare($context->getVersion(), "1.0.1", "<")) {
             $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
 
             $eavSetup->updateAttribute(
                 \Magento\Catalog\Model\Product::ENTITY,
-			    'sample_attribute',
+                'sample_attribute',
                 'frontend_label',
                 'SMG Custom Attribute'
             );
         }
-        if (version_compare($context->getVersion(), "1.0.2", "<"))
-        {
+        if (version_compare($context->getVersion(), "1.0.2", "<")) {
             $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
 
             $eavSetup->updateAttribute(
                 \Magento\Catalog\Model\Product::ENTITY,
-			    'sample_attribute',
+                'sample_attribute',
                 'frontend_label',
                 'Custom Attribute'
             );
@@ -42,8 +41,7 @@ class UpgradeData implements UpgradeDataInterface
         /**
          * adding attribute with dropdown
          */
-        if (version_compare($context->getVersion(), "1.0.3", "<"))
-        {
+        if (version_compare($context->getVersion(), "1.0.3", "<")) {
             $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
 
             $eavSetup->addAttribute(
@@ -61,3 +59,4 @@ class UpgradeData implements UpgradeDataInterface
         }
     }
 }
+

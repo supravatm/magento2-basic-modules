@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!-- Add Menu on top Manu -->
+        <add id="SMG_RestApiProductComment::productcomment" 
+            title="SMG" 
+            translate="title" 
+            module="SMG_RestApiProductComment" 
+            resource="SMG_RestApiProductComment::productcomment"
+            sortOrder="90" />
+
+        <!-- Add sub-menu item  -->
+        <add id="SMG_RestApiProductComment::backend" 
+            title="Product Comments" translate="title" sortOrder="10"
+            module="SMG_RestApiProductComment" 
+            resource="SMG_RestApiProductComment::backend"
+            parent="SMG_RestApiProductComment::productcomment" />
+
+        <add id="SMG_RestApiProductComment::backend_view" 
+            title="Grid" translate="title" sortOrder="10"
+            module="SMG_RestApiProductComment" 
+            resource="SMG_RestApiProductComment::backend_view"
+            parent="SMG_RestApiProductComment::backend" 
+            action="productcomment/index/index" />
+
+        <add id="SMG_RestApiProductComment::comment_system_config" 
+            title="System" translate="title" sortOrder="20"
+            module="SMG_RestApiProductComment" 
+            resource="SMG_RestApiProductComment::comment_system_config"
+            parent="SMG_RestApiProductComment::productcomment" />
+
+        <add id="SMG_RestApiProductComment::system_config" 
+            title="Configuration" translate="title" sortOrder="10"
+            module="SMG_RestApiProductComment" 
+            resource="SMG_RestApiProductComment::system_config"
+            parent="SMG_RestApiProductComment::comment_system_config" />
+
+        <!-- update an existing backend menu item  -->
+        <update id="Magento_Marketplace::partners" sortOrder="100" />
+    </menu>
+</config>

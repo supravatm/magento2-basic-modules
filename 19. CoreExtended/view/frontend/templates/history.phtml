@@ -1,0 +1,7 @@
+<?php
+    /* @var $block \Magento\Sales\Block\Order\History\Container */
+?>
+
+<td data-th="<?= $escaper->escapeHtml(__('Remote IP')) ?>" class="col">
+    <?= $escaper->escapeHtml($block->getOrder()->getRemoteIp()) ?>
+</td>

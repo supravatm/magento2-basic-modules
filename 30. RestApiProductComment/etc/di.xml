@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="SMG\RestApiProductComment\Api\ProductCommentRepositoryInterface"
+                type="SMG\RestApiProductComment\Model\ProductCommentRepository"/>
+    
+    <preference for="SMG\RestApiProductComment\Api\Data\ProductCommentInterface"
+                type="SMG\RestApiProductComment\Model\ProductComment"/>
+    
+    <preference for="SMG\RestApiProductComment\Api\Data\ProductCommentSearchResultsInterface"
+                type="SMG\RestApiProductComment\Model\ProductCommentSearchResults"/>
+
+
+    <!-- START: Admin Grid configuration -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+        <argument name="collections" xsi:type="array">
+            <item name="product_comment_listing_data_source" xsi:type="string">ProductCommentCollection</item>
+        </argument>
+        </arguments>
+    </type>
+    <virtualType name="ProductCommentCollection" type="SMG\RestApiProductComment\Ui\DataProvider\Listing\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">smg_product_comment</argument>
+            <argument name="resourceModel" xsi:type="string">SMG\RestApiProductComment\Model\ResourceModel\ProductComment</argument>
+        </arguments>
+    </virtualType>
+    <!-- END:  Admin Grid configuration -->
+</config>

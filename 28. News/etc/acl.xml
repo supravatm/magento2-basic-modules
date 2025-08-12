@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="SMG_News::smg_news" title="SMG News" translate="title" sortOrder="100">
+                    <resource id="SMG_News::all" title="All News" translate="title" sortOrder="10" >
+                        <resource id="SMG_News::actions" title="Actions" translate="title" sortOrder="10" >
+                            <resource id="SMG_News::actions_all" title="All Operation" translate="title" sortOrder="20" />
+                            <resource id="SMG_News::update_or_new" title="Add / Edit" translate="title" sortOrder="20" />
+                            <resource id="SMG_News::deleteone" title="Delete One By One" translate="title" sortOrder="40" />
+                            <resource id="SMG_News::bulk_delete" title="Bulk Delete" translate="title" sortOrder="40" />
+                            <resource id="SMG_News::reviewer" title="reviewer" translate="title" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

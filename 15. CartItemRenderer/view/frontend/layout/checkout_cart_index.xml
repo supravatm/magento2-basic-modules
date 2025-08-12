@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        
+        <referenceBlock name="checkout.cart.coupon" remove="true"/>
+        <block class="Magento\Checkout\Block\Cart\Coupon" name="checkout.cart.showcouponbefortotal" as="coupon" template="SMG_CartItemRenderer::cart/coupon.phtml"/>
+        <move element="checkout.cart.showcouponbefortotal" destination="cart.summary" after="checkout.cart.summary.title"/>
+
+        <!-- <referenceContainer name="cart.summary">
+            <block name="checkout.cart.delivery.message" as="delivery_message" template="SMG_CartItemRenderer::cart/delivery_message.phtml" after="checkout.cart.summary.title" />
+        </referenceContainer> -->
+
+        
+
+        <referenceBlock name="checkout.cart.shipping" template="SMG_CartItemRenderer::cart/shipping.phtml">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="summary-block-config" xsi:type="array">
+                            <item name="componentDisabled" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

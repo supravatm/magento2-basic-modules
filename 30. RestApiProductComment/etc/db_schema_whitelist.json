@@ -1,0 +1,21 @@
+{
+    "smg_product_comment": {
+        "column": {
+            "comment_id": true,
+            "product_id": true,
+            "customer_id": true,
+            "title": true,
+            "comment": true,
+            "status": true,
+            "creation_time": true,
+            "update_time": true
+        },
+        "index": {
+            "SMG_PRODUCT_COMMENT_TITLE_COMMENT": true,
+            "SMG_PRODUCT_COMMENT_PRODUCT_ID_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

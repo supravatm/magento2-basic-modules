@@ -1,15 +1,19 @@
 <?php
+declare(strict_types=1);
+
 namespace SMG\WebFlow\Block;
 
-class FirstPage extends \Magento\Framework\View\Element\Template
-{
-    public function __construct(\Magento\Framework\View\Element\Template\Context $context)
-	{
-		parent::__construct($context);
-	}
+use Magento\Framework\View\Element\Template;
 
+class FirstPage extends Template
+{
+    /**
+     * First page action method
+     *
+     * @return string
+     */
     public function sayHello()
-	{
-		return __('Hello World');
-	}
+    {
+        return __('Hello World');
+    }
 }

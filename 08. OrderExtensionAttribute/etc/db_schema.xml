@@ -21,6 +21,8 @@
         </constraint>
  
         <!-- Create a foreign key constraint to the related table to be related, which in this case is sales_order. -->
-        <constraint xsi:type="foreign" referenceId="SMG_EXTENSION_ATTRIBUTE_SALES_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID" table="smg_extension_attribute_sales_order" column="order_id" referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SMG_EXTENSION_ATTRIBUTE_SALES_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID" 
+            table="smg_extension_attribute_sales_order" 
+            column="order_id" referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
 </schema>

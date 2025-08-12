@@ -4,16 +4,18 @@ declare(strict_types=1);
  
 namespace SMG\OrderExtensionAttribute\Plugin;
  
-use SMG\OrderExtensionAttribute\Model\ResourceModel\SalesOrder\Collection;
 use SMG\OrderExtensionAttribute\Model\ResourceModel\SalesOrder\CollectionFactory;
 use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Sales\Api\Data\OrderInterface;
  
 class AddPoNumberToSalesOrder
 {
+    /**
+     * @var CollectionFactory
+     */
     private CollectionFactory $collectionFactory;
  
     /**
-     * AddPoNumberToSalesOrder constructor.
      * @param CollectionFactory $collectionFactory
      */
     public function __construct(
@@ -23,8 +25,10 @@ class AddPoNumberToSalesOrder
     }
  
     /**
+     * Plugin Get
+     *
      * @param OrderRepositoryInterface $subject
-     * @param $result
+     * @param OrderInterface $result
      * @return mixed
      */
     public function afterGet(
@@ -33,6 +37,8 @@ class AddPoNumberToSalesOrder
     ) {
         // We must first grab the record from our custom database table by the order id.
  
+        //print_r($result->debug());
+        //die;
         $collection = $this->collectionFactory->create();
         $orderCollection = $collection
             ->addFieldToFilter('order_id', $result->getId())
@@ -52,8 +58,10 @@ class AddPoNumberToSalesOrder
     }
  
     /**
+     * Plugin GetList
+     *
      * @param OrderRepositoryInterface $subject
-     * @param $result
+     * @param OrderInterface $result
      * @return mixed
      */
     public function afterGetList(
@@ -64,7 +72,6 @@ class AddPoNumberToSalesOrder
         foreach ($result->getItems() as $order) {
             $this->afterGet($subject, $order);
         }
- 
         return $result;
     }
 }

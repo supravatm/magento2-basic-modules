@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--  save field -->
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="custom-field-save-info" type="SMG\CheckoutDeliverydate\Plugin\Checkout\Model\ShippingInformationManagement" sortOrder="1"/>
+    </type>
+
+    <!-- Sync the column "delivery_date" between the sales_order and sales_order_grid tables -->
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="delivery_date" xsi:type="string">sales_order.delivery_date</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Plugin for add field to checkout-address form -->
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="smg_checkout_layout_processor_add_delivery_block"
+                type="SMG\CheckoutDeliveryDate\Plugin\Checkout\Block\LayoutProcessor" />
+    </type>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="addDeliveryDatetoOrder" type="SMG\CheckoutDeliveryDate\Plugin\Api\AddDeliveryDateToSalesOrder"/>
+    </type>
+
+</config>

@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/**
+ * @var \Magento\Framework\View\Element\AbstractBlock $block
+ */
+
+// We should use strlen function because coupon code could be "0", converted to bool will lead to false
+$hasCouponCode = $block->getCouponCode() !== null && strlen($block->getCouponCode()) > 0;
+?>
+
+<div class="block discount"
+     id="block-discount">
+    <form id="discount-coupon-form"
+              action="<?= $escaper->escapeUrl($block->getUrl('checkout/cart/couponPost')) ?>"
+              method="post"
+              data-mage-init='{"discountCode":{"couponCodeSelector": "#coupon_code",
+                                               "removeCouponSelector": "#remove-coupon",
+                                               "applyButton": "button.action.apply",
+                                               "cancelButton": "button.action.cancel"}}'>
+            <div class="fieldset coupon<?= $hasCouponCode ? ' applied' : '' ?>">
+                <input type="hidden" name="remove" id="remove-coupon" value="0" />
+                <div class="field">
+                    <div class="control">
+                        <input type="text"
+                                style="width: 50%;"
+                               class="input-text"
+                               id="coupon_code"
+                               name="coupon_code"
+                               value="<?= $escaper->escapeHtmlAttr($block->getCouponCode()) ?>"
+                               placeholder="<?= $escaper->escapeHtmlAttr(__('Enter code')) ?>"
+                                <?php if ($hasCouponCode): ?>
+                                   disabled="disabled"
+                                <?php endif; ?>
+                        />
+                        <?php if (!$hasCouponCode): ?>
+                        
+                            <button class="action apply primary" type="button"
+                                    value="<?= $escaper->escapeHtmlAttr(__('Apply')) ?>">
+                                <span><?= $escaper->escapeHtml(__('Apply')) ?></span>
+                            </button>
+                        
+                        <?php else: ?>
+                            
+                            <button  type="button" class="action cancel primary"
+                                    value="<?= $escaper->escapeHtmlAttr(__('Cancel')) ?>">
+                                <span><?= $escaper->escapeHtml(__('Cancel')) ?></span>
+                            </button>
+                            
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    
+                </div>
+            </div>
+            <?php if (!$hasCouponCode): ?>
+                <?= /* @noEscape */ $block->getChildHtml('captcha') ?>
+            <?php endif; ?>
+        </form>
+</div>

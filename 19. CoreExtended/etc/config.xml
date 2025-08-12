@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <coreextended>
+            <core_extended_config>
+                <active>1</active>
+                <title>global_title</title>
+            </core_extended_config>
+        </coreextended>
+    </default>
+    
+    <websites>
+        <base>
+            <coreextended>
+                <core_extended_config>
+                    <active>1</active>
+                    <title>main website store base</title>
+                </core_extended_config>
+            </coreextended>
+        </base>
+        <vietnam_website>
+            <coreextended>
+                <core_extended_config>
+                    <active>1</active>
+                    <title>main website  vietnam_website changed1</title>
+                </core_extended_config>
+            </coreextended>
+        </vietnam_website>
+    </websites>
+    <stores>
+        <default>
+            <coreextended>
+                <core_extended_config>
+                    <active>1</active>
+                    <title>main website store value1</title>
+                </core_extended_config>
+            </coreextended>
+        </default>
+        <hindi>
+            <coreextended>
+                <core_extended_config>
+                    <active>1</active>
+                    <title>vietnam_store store value2</title>
+                </core_extended_config>
+            </coreextended>
+        </hindi>
+        <vn_english>
+            <coreextended>
+                <core_extended_config>
+                    <active>1</active>
+                    <title>vietnam_store store vn_english</title>
+                </core_extended_config>
+            </coreextended>
+        </vn_english>
+        <vn_vietnam>
+            <coreextended>
+                <core_extended_config>
+                    <active>1</active>
+                    <title>vietnam_store store vn_vietnam</title>
+                </core_extended_config>
+            </coreextended>
+        </vn_vietnam>
+    </stores>
+
+</config>

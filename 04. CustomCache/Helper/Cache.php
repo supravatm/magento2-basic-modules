@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 namespace SMG\CustomCache\Helper;
 
 use Magento\Framework\App\Helper;
@@ -39,7 +40,7 @@ class Cache extends Helper\AbstractHelper
      * @param array $vars
      * @return string
      */
-    public function getId($method, $vars = array())
+    public function getId($method, $vars = [])
     {
         return base64_encode($this->storeId . self::CACHE_ID . $method . implode('', $vars));
     }
@@ -54,7 +55,7 @@ class Cache extends Helper\AbstractHelper
             return $this->cache->load($cacheId);
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
@@ -66,9 +67,9 @@ class Cache extends Helper\AbstractHelper
     public function save($data, $cacheId, $cacheLifetime = self::CACHE_LIFETIME)
     {
         if ($this->cacheState->isEnabled(self::CACHE_ID)) {
-            $this->cache->save($data, $cacheId, array(self::CACHE_TAG), $cacheLifetime);
-            return TRUE;
+            $this->cache->save($data, $cacheId, [self::CACHE_TAG], $cacheLifetime);
+            return true;
         }
-        return FALSE;
+        return false;
     }
 }

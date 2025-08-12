@@ -6,14 +6,13 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
  
 class SalesOrder extends AbstractDb
 {
-    /** @var string Main table name */
-    const MAIN_TABLE = 'smg_sales_order_po_number';
- 
-    /** @var string Main table primary key field name */
-    const ID_FIELD_NAME = 'id';
- 
+    /**
+     * Initilize Resource Model
+     *
+     * @return void
+     */
     protected function _construct(): void
     {
-        $this->_init(self::MAIN_TABLE, self::ID_FIELD_NAME);
+        $this->_init('smg_sales_order_po_number', 'id');
     }
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
+
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    
-    <route url="/V1/blogpost/:id" method="GET">
-        <service class="SMG\Blog\Api\PostRepositoryInterface" method="getById"/>
+    <!-- test api Group -->
+    <route url="/V1/testapi/custom/:id" method="GET">
+        <service class="SMG\RestApiTest\Api\TestApiRepositoryInterface" method="getApiData"/>
         <resources>
-            <resource ref="Magento_Cms::page"/>
+            <resource ref="anonymous"/>
         </resources>
     </route>
 </routes>

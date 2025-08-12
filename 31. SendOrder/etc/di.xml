@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <!-- Add new command in CLI -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="send_order_api" xsi:type="object">SMG\SendOrder\Console\Command\SendOrderCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--  Custom Log file -->
+    <type name="SMG\SendOrder\Observer\SendOrderObserver">
+        <arguments>
+            <argument name="logger" xsi:type="object">SMG\SendOrder\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <virtualType name="SMG\SendOrder\Logger\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">SMG Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">SMG\SendOrder\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SMG\SendOrder\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/smg_modules.log</argument>
+        </arguments>
+    </virtualType>
+
+</config>

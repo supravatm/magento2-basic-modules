@@ -1,68 +1,83 @@
 <?php
-namespace SMG\CustomCache\Controller\Example;
+// phpcs:ignoreFile
+namespace SMG\CustomCache\Controller\Index;
 
-class Index extends \Magento\Framework\App\Action\Action
+use Magento\Framework\App\ActionInterface;
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Serialize\SerializerInterface;
+use Magento\Framework\App\Cache;
+use Magento\Framework\App\Cache\State;
+use Magento\Store\Model\StoreManagerInterface;
+use SMG\CustomCache\Model\Cache\Type as CacheType;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
+
+class Index implements ActionInterface
 {
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     protected $resultPageFactory;
-
     /**
-     * @var \SMG\CustomCache\Helper\Cache
+     * @var Cache
      */
-    protected $customCacheHepler;
-
+    protected $cache;
     /**
-     * @var \Magento\Framework\Serialize\SerializerInterface
+     * @var State
+     */
+    protected $cacheState;
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+    /**
+     * @var SerializerInterface
      */
     protected $serializer;
-
     /**
-     * Construct CacheExample
-     *
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \SMG\CustomCache\Helper\Cache $customCacheHepler
-     * @param \Magento\Framework\Serialize\SerializerInterface $serializer
+     * @var TimezoneInterface
      */
+    protected $dateTime;
+
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \SMG\CustomCache\Helper\Cache $customCacheHepler,
-        \Magento\Framework\Serialize\SerializerInterface $serializer
+        PageFactory $resultPageFactory,
+        SerializerInterface $serializer,
+        Cache $cache,
+        State $cacheState,
+        StoreManagerInterface $storeManager,
+        TimezoneInterface $dateTime
     ) {
         $this->resultPageFactory    = $resultPageFactory;
-        $this->customCacheHepler   = $customCacheHepler;
         $this->serializer           = $serializer;
-        parent::__construct($context);
+        $this->cache                = $cache;
+        $this->cacheState           = $cacheState;
+        $this->storeManager         = $storeManager;
+        $this->dateTime             = $dateTime;
     }
 
-    /**
-     * Loads page content
-     *
-     * @return \Magento\Framework\View\Result\Page
-     */
     public function execute()
     {
-        /*
-         * Check if menu is saved in cache
-         */
-        $cacheId = $this->customCacheHepler->getId("smgcache");
-        if($cache = $this->customCacheHepler->load($cacheId)){
-            echo "Check if cache is saved in custom cache tag <br/>";
-            print_r($cache);
-        }
-        if(!$cache = $this->customCacheHepler->load($cacheId))
-        {
-            $html = "<h4>Magento 2 custom cache type for improving the page load time</h4>";
-            /*
-            * Save HTML to cache
-            */
-            $this->customCacheHepler->save($html, $cacheId);
-            echo "Save HTML to custom cache tag <br/>";
-            print_r($cache);
-        }
+
+        $cacheKey  = CacheType::TYPE_IDENTIFIER;
+        $cacheTag  = CacheType::CACHE_TAG;
+
+        $cacheData = [
+            'page_laoded' => $this->dateTime->date()->format('Y-m-d H:i:s')
+        ];
+        $storeData = $this->cache->save(
+            $this->serializer->serialize($cacheData),
+            $cacheKey,
+            [$cacheTag],
+            86400
+        );
+
+        $cacheKey  = CacheType::TYPE_IDENTIFIER;
+
+        $data = $this->serializer->unserialize($this->cache->load($cacheKey));
+        sleep(3);
+        echo '<pre>';
+        print_r($data);
+        echo $this->dateTime->date()->format('Y-m-d H:i:s'); 
+        echo "<br>";
         return $this->resultPageFactory->create('raw');
     }
 }

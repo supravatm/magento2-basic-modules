@@ -3,10 +3,18 @@ namespace SMG\CustomCron\Cron;
 
 use Psr\Log\LoggerInterface;
 
-class Test {
+class Test
+{
+    /**
+     * @var Psr\Log\LoggerInterface $logger
+     */
     protected $logger;
 
-    public function __construct(LoggerInterface $logger) {
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
+    {
         $this->logger = $logger;
     }
 
@@ -15,7 +23,8 @@ class Test {
     *
     * @return void
     */
-    public function execute() {
+    public function execute()
+    {
         $this->logger->info('Cron Works');
     }
 }

@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
-<!--
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
--->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="SMG\Blog\Api\PostRepositoryInterface" type="SMG\Blog\Model\PostRepository" />
-    <preference for="SMG\Blog\Api\Data\PostInterface" type="SMG\Blog\Model\Post" />
-    <preference for="SMG\Blog\Api\Data\PostSearchResult" type="SMG\Blog\Model\PostSearchResult" />
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  
+    <preference for="SMG\RestApiTest\Api\TestApiRepositoryInterface" type="SMG\RestApiTest\Model\TestApiRepository" />
+    <preference for="SMG\RestApiTest\Api\Data\TestApiDataInterface" type="SMG\RestApiTest\Model\TestApi" />
+
+
+    <type name="SMG\RestApiTest\Model\TestApiRepository">
+        <arguments>
+            <argument name="testApi" xsi:type="object">SMG\RestApiTest\Model\TestApiExtended</argument>
+        </arguments>
+    </type>
+
 </config>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page>
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" 
+                ifconfig="coreextended/core_extended_config/active"
+                name="customer-account-navigation-your-second-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">login_history/login/history</argument>
+                    <argument name="label" xsi:type="string">Login History</argument>
+                    <argument name="sortOrder" xsi:type="number">250</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

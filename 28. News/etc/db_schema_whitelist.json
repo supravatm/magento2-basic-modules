@@ -1,0 +1,20 @@
+{
+    "smg_news": {
+        "column": {
+            "news_id": true,
+            "title": true,
+            "summary": true,
+            "description": true,
+            "status": true,
+            "creation_time": true,
+            "update_time": true
+        },
+        "index": {
+            "SMG_NEWS_TITLE": true,
+            "SMG_NEWS_NEWS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

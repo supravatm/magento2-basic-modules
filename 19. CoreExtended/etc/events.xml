@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <!-- Set product attribute and addtional_data  to Quote_Item Table -->
+    <event name="core_abstract_save_after">
+        <observer name="test_core_abstract_save_after"  instance="SMG\CoreExtended\Observer\NewSaveAfter" />
+    </event>
+</config>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_submit_all_after">
+        <observer disabled="false" name="capture_order_to_send_external_api"
+                  instance="SMG\SendOrder\Observer\SendOrderObserver"/>
+    </event>
+    <event name="checkout_onepage_controller_success_action">
+        <observer disabled="true" name="send_order_success_page_observer" 
+            instance="SMG\SendOrder\Observer\SuccessOrderObserver" />
+    </event>
+</config>

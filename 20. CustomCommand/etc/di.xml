@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Configure custom command -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="commandCustom1" xsi:type="object">SMG\CustomCommand\Console\Command\CustomCommand</item>
+                <item name="customCommand2" xsi:type="object">SMG\CustomCommand\Console\Command\CustomCommand2</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

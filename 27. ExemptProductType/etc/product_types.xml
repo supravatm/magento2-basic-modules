@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_types.xsd">
+    <type name="exempt" label="Exempt Product" modelInstance="SMG\ExemptProductType\Model\Product\Type\Exempt" indexPriority="60" sortOrder="80" isQty="true">
+        <priceModel instance="SMG\ExemptProductType\Model\Product\ExemptProductPrice" />
+        <customAttributes>
+           <attribute name="refundable" value="false"/>
+           <attribute name="is_real_product" value="true"/>
+           <attribute name="taxable" value="false"/>
+       </customAttributes>
+    </type>
+</config>

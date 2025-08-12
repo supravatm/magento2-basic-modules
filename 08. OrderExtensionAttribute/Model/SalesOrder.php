@@ -3,11 +3,17 @@
 namespace SMG\OrderExtensionAttribute\Model;
  
 use Magento\Framework\Model\AbstractModel;
+use SMG\OrderExtensionAttribute\Model\ResourceModel\SalesOrder as ResourSalesOrder;
  
 class SalesOrder extends AbstractModel
 {
+    /**
+     * Initilise Model
+     *
+     * @return void
+     */
     protected function _construct(): void
     {
-        $this->_init(ResourceModel\SalesOrder::class);
+        $this->_init(ResourSalesOrder::class);
     }
 }

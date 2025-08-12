@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SMG_News::smg_news" 
+            title="News" 
+            translate="title" 
+            module="SMG_News" 
+            resource="SMG_News::smg_news"
+            sortOrder="90" />
+
+        <add id="SMG_News::smg_all_news" 
+            title="All News" 
+            translate="title" 
+            module="SMG_News" 
+            parent="SMG_News::smg_news" 
+            sortOrder="10" 
+            action="news/item"
+            resource="SMG_News::all"/>
+
+    </menu>
+</config>

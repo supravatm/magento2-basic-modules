@@ -1,0 +1,21 @@
+{
+    "quote_item": {
+        "column": {
+            "sample_attribute": true,
+            "manufacturer": true,
+            "material": true
+        }
+    },
+    "order_item": {
+        "column": {
+            "sample_attribute": true
+        }
+    },
+    "sales_order_item": {
+        "column": {
+            "sample_attribute": true,
+            "manufacturer": true,
+            "material": true
+        }
+    }
+}

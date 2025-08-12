@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+  <argument name="data" xsi:type="array">
+    <item name="js_config" xsi:type="array">
+      <item name="provider" xsi:type="string">news_listing.news_listing_data_source</item>
+    </item>
+  </argument>
+  <settings>
+    <buttons>
+      <button name="add">
+        <url path="*/*/add" />
+        <class>primary</class>
+        <label translate="true">Add News</label>
+      </button>
+    </buttons>
+    <spinner>smg_news_grid_columns</spinner>
+    <deps>
+      <dep>news_listing.news_listing_data_source</dep>
+    </deps>
+  </settings>
+  <dataSource name="news_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <settings>
+      <storageConfig>
+        <param name="indexField" xsi:type="string">news_id</param>
+      </storageConfig>
+      <updateUrl path="mui/index/render" />
+    </settings>
+    <aclResource>SMG_News::all</aclResource>
+    <dataProvider class="SMG\News\Ui\DataProvider\News\ListingDataProvider"
+      name="news_listing_data_source">
+      <settings>
+        <requestFieldName>id</requestFieldName>
+        <primaryFieldName>news_id</primaryFieldName>
+      </settings>
+    </dataProvider>
+  </dataSource>
+  <listingToolbar name="listing_top">
+    <settings>
+      <sticky>true</sticky>
+    </settings>
+    <bookmark name="bookmarks" />
+    <columnsControls name="columns_controls" />
+    <filters name="listing_filters">
+      <argument name="data" xsi:type="array">
+        <item name="observers" xsi:type="array">
+          <item name="column" xsi:type="string">column</item>
+        </item>
+      </argument>
+      <settings>
+        <templates>
+          <filters>
+            <select>
+              <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+              <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+            </select>
+          </filters>
+        </templates>
+      </settings>
+    </filters>
+    <massaction name="listing_massaction">
+      <action name="delete">
+        <settings>
+          <confirm>
+            <message translate="true">Are you sure you want to delete selected items?</message>
+            <title translate="true">Delete items</title>
+          </confirm>
+          <url path="*/*/massDelete" />
+          <type>delete</type>
+          <label translate="true">Delete</label>
+        </settings>
+      </action>
+      <action name="disable">
+        <settings>
+          <url path="cms/page/massDisable" />
+          <type>disable</type>
+          <label translate="true">Disable</label>
+        </settings>
+      </action>
+      <action name="enable">
+        <settings>
+          <url path="cms/page/massEnable" />
+          <type>enable</type>
+          <label translate="true">Enable</label>
+        </settings>
+      </action>
+    </massaction>
+
+    <paging name="listing_paging" />
+  </listingToolbar>
+  <columns name="smg_news_grid_columns">
+    <selectionsColumn name="ids">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="indexField" xsi:type="string">news_id</item>
+        </item>
+      </argument>
+    </selectionsColumn>
+    <column name="news_id">
+      <settings>
+        <filter>textRange</filter>
+        <label translate="true">News ID</label>
+        <resizeDefaultWidth>25</resizeDefaultWidth>
+      </settings>
+    </column>
+    <column name="title">
+      <settings>
+        <filter>text</filter>
+        <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+        <label translate="true">Title</label>
+      </settings>
+    </column>
+    <column name="summary">
+      <settings>
+        <filter>fullText</filter>
+        <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+        <label translate="true">Summary</label>
+      </settings>
+    </column>
+    <column name="status" component="Magento_Ui/js/grid/columns/select">
+      <settings>
+        <filter>select</filter>
+        <dataType>select</dataType>
+        <label translate="true">Status</label>
+        <options class="SMG\News\Model\Config\Source\Status" />
+      </settings>
+    </column>
+    <column name="creation_time" class="Magento\Ui\Component\Listing\Columns\Date"
+      component="Magento_Ui/js/grid/columns/date">
+      <settings>
+        <filter>dateRange</filter>
+        <dataType>date</dataType>
+        <label translate="true">Creation Time</label>
+      </settings>
+    </column>
+    <actionsColumn name="actions" class="SMG\News\Ui\Component\News\Listing\Column\Actions"
+      sortOrder="200">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="resizeEnabled" xsi:type="boolean">false</item>
+          <item name="resizeDefaultWidth" xsi:type="string">107</item>
+          <item name="indexField" xsi:type="string">news_id</item>
+        </item>
+      </argument>
+    </actionsColumn>
+  </columns>
+</listing>

@@ -1,0 +1,26 @@
+attribute_model	attribute_model	null
+backend	backend_model	null
+type	backend_type	varchar
+table	backend_table	null
+frontend	frontend_model	null
+input	frontend_input	text
+label	frontend_label	null
+frontend_class	frontend_class	null
+source	source_model	null
+required	is_required	1
+user_defined	is_user_defined	0
+default	default_value	null
+unique	is_unique	0
+note	note	null
+global	is_global	\Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL
+
+
+
+
+SELECT COLUMN_NAME as in_script, COLUMN_NAME as database, COLUMN_DEFAULT, COLUMN_COMMENT FROM information_schema.columns  WHERE table_name = 'catalog_eav_attribute' AND table_schema = 'magento';
+
+
+SELECT * FROM `eav_attribute_option_value` WHERE option_id in(31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,142,143,144,145,146,147,148);
+
+
+{"id":245,"sku":"MH13-M-Blue","name":"Marco Lightweight Active Hoodie-M-Blue","attribute_set_id":9,"price":74,"status":1,"visibility":1,"type_id":"simple","created_at":"2025-04-11 21:33:02","updated_at":"2025-07-02 12:35:53","weight":1,"extension_attributes":{"website_ids":[1],"category_links":[{"position":-199,"category_id":"15"}],"stock_item":{"item_id":245,"product_id":245,"stock_id":1,"qty":100,"is_in_stock":true,"is_qty_decimal":false,"show_default_notification_message":false,"use_config_min_qty":true,"min_qty":0,"use_config_min_sale_qty":1,"min_sale_qty":1,"use_config_max_sale_qty":true,"max_sale_qty":10000,"use_config_backorders":true,"backorders":0,"use_config_notify_stock_qty":true,"notify_stock_qty":1,"use_config_qty_increments":true,"qty_increments":0,"use_config_enable_qty_inc":true,"enable_qty_increments":false,"use_config_manage_stock":true,"manage_stock":true,"low_stock_date":null,"is_decimal_divided":false,"stock_status_changed_auto":0}},"product_links":[],"options":[],"media_gallery_entries":[{"id":399,"media_type":"image","label":"","position":1,"disabled":false,"types":["image","small_image","thumbnail"],"file":"/m/h/mh13-blue_main_1.jpg"},{"id":400,"media_type":"image","label":"","position":2,"disabled":false,"types":[],"file":"/m/h/mh13-blue_alt1_1.jpg"},{"id":401,"media_type":"image","label":"","position":3,"disabled":false,"types":[],"file":"/m/h/mh13-blue_back_1.jpg"}],"tier_prices":[],"custom_attributes":[{"attribute_code":"image","value":"/m/h/mh13-blue_main_1.jpg"},{"attribute_code":"small_image","value":"/m/h/mh13-blue_main_1.jpg"},{"attribute_code":"thumbnail","value":"/m/h/mh13-blue_main_1.jpg"},{"attribute_code":"options_container","value":"container2"},{"attribute_code":"url_key","value":"marco-lightweight-active-hoodie-m-blue"},{"attribute_code":"msrp_display_actual_price_type","value":"0"},{"attribute_code":"required_options","value":"0"},{"attribute_code":"has_options","value":"0"},{"attribute_code":"tax_class_id","value":"2"},{"attribute_code":"category_ids","value":["15"]},{"attribute_code":"description","value":"<p>For cold-weather training or post-game layering, you need something more than a basic fleece. Our Marco Lightweight Active Hoodie brings both style and performance to the plate, court, or touchline. The smooth-faced, brushed-back fabric blocks wind and traps body heat, while integrated Cocona&reg; fibers pull moisture away.</p>\n<p>&bull; Light blue heather full zip hoodie.<br />&bull; Fitted flatlock seams.<br />&bull; Matching lining and drawstring. <br />&bull; Machine wash/dry.</p>"},{"attribute_code":"size","value":"168"},{"attribute_code":"color","value":"50"},{"attribute_code":"clothing_material","value":"225"}]}

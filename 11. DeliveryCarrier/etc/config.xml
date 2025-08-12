@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <delivery>
+                <active>0</active>
+                <sallowspecific>0</sallowspecific>
+                <model>SMG\DeliveryCarrier\Model\Carrier\Delivery</model>
+                <name>Delivery Rate</name>
+                <title>Delivery Way</title>
+                <shipping_cost>1.00</shipping_cost>
+                <sort_order>15</sort_order>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </delivery>
+        </carriers>
+    </default>
+</config>

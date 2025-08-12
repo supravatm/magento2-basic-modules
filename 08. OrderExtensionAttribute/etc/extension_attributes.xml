@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
     <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
-        <attribute code="po_number" type="string"/>
+        <attribute code="po_number" type="string">
+            <!--  'resources' is needed to API user access po_number -->
+            <!-- <resources>
+                <resource ref="Training_ExampleAdminPage::first_page"/>
+            </resources> -->
+            <!-- join is required if we need search by extension attribute -->
+            <join reference_table="smg_sales_order_po_number" reference_field="order_id" join_on_field="entity_id">
+                <field column="po_number">po_number</field>
+            </join>
+        </attribute>
     </extension_attributes>
 </config>
