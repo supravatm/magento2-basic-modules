@@ -13,27 +13,31 @@ jobs:
       - uses: actions/checkout@v3
       - name: Generate and update table
         run: |
-          # This script will be run by the GitHub Action
-          # It finds directories and creates a markdown table.
-          TABLE_CONTENT=$(
+          # 1. Generate the table content and save it to a temporary file.
+          {
             echo "| Directory | Description |"
             echo "|---|---|"
-            find . -maxdepth 1 -type d -not -path './.git' -not -path './.github' -print0 | sort -z | while read -d '' DIR; do
+            find . -maxdepth 1 -type d -not -path './.git' -not -path './.github' -print0 | while IFS= read -r -d '' DIR; do
               DIR_NAME=$(basename "$DIR")
-              # A simple way to get description is from a 'README.md' file in each directory.
-              DESCRIPTION_FILE="$DIR/README.md"
+              DESCRIPTION_FILE="$DIR/composer.json"
               if [ -f "$DESCRIPTION_FILE" ]; then
-                DESCRIPTION=$(cat "$DESCRIPTION_FILE")
+                DESCRIPTION=$(<"$DESCRIPTION_FILE")
               else
                 DESCRIPTION="No description available."
               fi
               echo "| [$DIR_NAME]($DIR_NAME) | $DESCRIPTION |"
             done
-          )
+          } > table_content.md
 
-          # Use sed to replace the content between the markers in the README.
-          # We're using Perl's sed ('-i.bak' for in-place editing) because macOS's sed is different.
-          sed -i.bak '//,//c\\n'"$TABLE_CONTENT"'\n\n' README.md
+          # 2. Use sed to replace the content between the markers with the file's content.
+          # We use a custom delimiter '%' instead of '/' to avoid conflicts.
+          # The 'r' command reads from a file.
+          sed -i '//r table_content.md' README.md
+
+          # 3. Clean up the old content and the temporary file.
+          sed -i '//,//{//!d;}' README.md
+          rm table_content.md
+
 
       - name: Commit and push changes
         run: |
