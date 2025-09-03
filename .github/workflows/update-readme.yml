@@ -1,0 +1,27 @@
+name: "Cronjob"
+on:
+  schedule:
+    - cron: '15 */6 * * *'
+  push:
+    branches:
+      - master
+jobs:
+  update-readme:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update README
+        uses: huantt/article-listing@v1.1.0
+        with:
+          username: jacktt
+          limit: 5
+          template-file: 'README.md.template'
+          out-file: 'README.md'
+      - name: Commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "update"
+          git push origin master
