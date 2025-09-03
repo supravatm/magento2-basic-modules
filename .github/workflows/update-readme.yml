@@ -32,7 +32,7 @@ jobs:
           # 2. Use sed to replace the content between the markers with the file's content.
           # We use a custom delimiter '%' instead of '/' to avoid conflicts.
           # The 'r' command reads from a file.
-          sed -i '//r table_content.md' README.md
+          # sed -i '//r table_content.md' README.md
 
           # 3. Clean up the old content and the temporary file.
           # sed -i '//,//{//!d;}' README.md
