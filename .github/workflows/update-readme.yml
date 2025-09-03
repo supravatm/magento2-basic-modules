@@ -35,8 +35,8 @@ jobs:
           sed -i '//r table_content.md' README.md
 
           # 3. Clean up the old content and the temporary file.
-          sed -i '//,//{//!d;}' README.md
-          rm table_content.md
+          # sed -i '//,//{//!d;}' README.md
+          # rm table_content.md
 
       - name: Commit and push changes
         run: |
