@@ -1,0 +1,7 @@
+
+### Table
+
+{{ template "article-table" .Articles }}
+
+
+{{ .Author }} / {{ formatTime .Time }}
