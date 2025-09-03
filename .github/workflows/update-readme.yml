@@ -20,8 +20,8 @@ jobs:
             echo "|---|---|"
             find . -maxdepth 1 -type d -not -path './.git' -not -path './.github' -print0 | sort -z | while read -d '' DIR; do
               DIR_NAME=$(basename "$DIR")
-              # A simple way to get description is from a 'description.txt' file in each directory.
-              DESCRIPTION_FILE="$DIR/description.txt"
+              # A simple way to get description is from a 'README.md' file in each directory.
+              DESCRIPTION_FILE="$DIR/README.md"
               if [ -f "$DESCRIPTION_FILE" ]; then
                 DESCRIPTION=$(cat "$DESCRIPTION_FILE")
               else
