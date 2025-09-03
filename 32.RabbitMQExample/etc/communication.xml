@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
+  <!-- you can name topic according to self -->
+  <topic name="example.topic" request="string">
+    <handler 
+      name="exampleTopicHandlerName" 
+      type="SMG\RabbitMQExample\Model\Consumer" 
+      method="process" />
+  </topic>
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/publisher.xsd">
+
+  <consumer name="example.consumer"
+    queue="example.queue"
+    connection="amqp"
+    maxMessages="5000"
+    consumerInstance="Magento\Framework\MessageQueue\Consumer" 
+    handler="SMG\RabbitMQExample\Model\Consumer::process"/>
+</config>
