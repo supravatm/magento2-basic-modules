@@ -1,4 +1,4 @@
-name: "Cronjob"
+name: Update README Table
 on:
   schedule:
     - cron: '4 * * * *'
@@ -6,22 +6,29 @@ on:
     branches:
       - master
 jobs:
-  update-readme:
+  update-table:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Update README
-        uses: huantt/article-listing@v1.1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          username: jacktt
-          limit: 5
-          template-file: 'README.md.template'
-          out-file: 'README.md'
-      - name: Commit
+          python-version: '3.x'
+      
+      - name: Generate and update table
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "update"
-          git push origin master
+          python update_table.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m " chore(readme): Update directory table" || echo "No changes to commit"
+          git push
+      
