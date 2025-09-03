@@ -11,24 +11,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Update README
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      
       - name: Generate and update table
         run: |
-          python update_table.py
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+          # This script will be run by the GitHub Action
+          # It finds directories and creates a markdown table.
+          TABLE_CONTENT=$(
+            echo "| Directory | Description |"
+            echo "|---|---|"
+            find . -maxdepth 1 -type d -not -path './.git' -not -path './.github' -print0 | sort -z | while read -d '' DIR; do
+              DIR_NAME=$(basename "$DIR")
+              # A simple way to get description is from a 'description.txt' file in each directory.
+              DESCRIPTION_FILE="$DIR/description.txt"
+              if [ -f "$DESCRIPTION_FILE" ]; then
+                DESCRIPTION=$(cat "$DESCRIPTION_FILE")
+              else
+                DESCRIPTION="No description available."
+              fi
+              echo "| [$DIR_NAME]($DIR_NAME) | $DESCRIPTION |"
+            done
+          )
+
+          # Use sed to replace the content between the markers in the README.
+          # We're using Perl's sed ('-i.bak' for in-place editing) because macOS's sed is different.
+          sed -i.bak '//,//c\\n'"$TABLE_CONTENT"'\n\n' README.md
+
       - name: Commit and push changes
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m " chore(readme): Update directory table" || echo "No changes to commit"
+          git diff --staged --quiet || git commit -m "🤖 docs: Auto-update directory table"
           git push
       
